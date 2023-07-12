@@ -7,20 +7,27 @@ module SquareUp
       @params = params
     end
 
-    def call
-      response = Response.new(make_api_call)
-
-      if response.success?
-        response.body
-      else
-        response.errors
-      end
-    end
-
     private
 
-    def path
-      'v2/orders/search'.freeze
+    def result
+      orders_api.search_orders(body: request_body)
+    end
+
+    def orders_api
+      @orders_api ||= client.orders
+    end
+
+    def request_body
+      query.merge({ location_ids: location_ids })
+    end
+
+    def location_ids
+      location_response = SquareUp::Locations.call(token)
+      if location_response.success?
+        location_response.data['locations'].map { |location| location[:id] }
+      elsif location_response.error?
+        []
+      end
     end
 
     def query
@@ -40,22 +47,6 @@ module SquareUp
           sort_field: 'CLOSED_AT',
           sort_order: 'DESC'
         }
-      }
-    end
-
-    def location_ids
-      locations = Locations.call(token)
-      if locations.include? :error
-        []
-      else
-        locations
-      end
-    end
-
-    def payload
-      {
-        location_ids: location_ids,
-        query: query
       }
     end
   end

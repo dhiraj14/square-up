@@ -16,9 +16,14 @@ class SessionsController < ApplicationController
       render json: { error: request.params['error_description'] }
     else
       response = SquareUp::CreateToken.call(request.params, cookies['code_verifier'])
-      cookies['oauth_access_token'] = response['access_token']
-      cookies['oauth_refresh_token'] = response['refresh_token']
-      redirect_to sales_path
+      if response.success?
+        response = response.data
+        cookies['oauth_access_token'] = response['access_token']
+        cookies['oauth_refresh_token'] = response['refresh_token']
+        redirect_to sales_path
+      else
+        redirect_to login_path
+      end
     end
   end
 end
