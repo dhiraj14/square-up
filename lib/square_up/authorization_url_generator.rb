@@ -40,7 +40,7 @@ module SquareUp
     end
 
     def scopes
-      ["MERCHANT_PROFILE_READ", "ORDERS_READ"]
+      "MERCHANT_PROFILE_READ ORDERS_READ"
     end
 
     def oauth_url
