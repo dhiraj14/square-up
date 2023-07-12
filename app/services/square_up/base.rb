@@ -3,7 +3,7 @@ module SquareUp
     private
 
     def base_url
-      ENV["SQUARE_UP_BASE_URL"]
+      ENV['SQUARE_UP_BASE_URL']
     end
 
     def url
@@ -11,11 +11,11 @@ module SquareUp
     end
 
     def path
-      raise "Implement in child class"
+      raise 'Implement in child class'
     end
 
     def payload
-      raise "Implement in child class"
+      raise 'Implement in child class'
     end
 
     def method
@@ -41,9 +41,9 @@ module SquareUp
 
     def headers
       {
-        "Content-Type" => "application/json",
-        "Accept" => "application/json",
-        "Authorization" => "Bearer #{token}"
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json',
+        'Authorization' => "Bearer #{token}"
       }
     end
   end

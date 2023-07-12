@@ -10,7 +10,7 @@ module SquareUp
       response = Response.new(make_api_call)
 
       if response.success?
-        response.body["locations"].map{|location| location["id"]}
+        response.body['locations'].map { |location| location['id'] }
       else
         response.errors
       end
@@ -23,7 +23,7 @@ module SquareUp
     end
 
     def path
-      "v2/locations".freeze
+      'v2/locations'.freeze
     end
 
     def payload

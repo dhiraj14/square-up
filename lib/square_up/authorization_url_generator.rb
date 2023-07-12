@@ -1,7 +1,7 @@
 module SquareUp
   class AuthorizationUrlGenerator
     CHAR_LENGTH = 48
-    CODE_CHALLENGE_METHOD = "S256"
+    CODE_CHALLENGE_METHOD = 'S256'
 
     def self.call(...)
       new(...).call
@@ -36,11 +36,11 @@ module SquareUp
     end
 
     def urlsafe_base64(base64_str)
-      base64_str.tr("+/", "-_").tr("=", "")
+      base64_str.tr('+/', '-_').tr('=', '')
     end
 
     def scopes
-      "MERCHANT_PROFILE_READ ORDERS_READ"
+      'MERCHANT_PROFILE_READ ORDERS_READ'
     end
 
     def oauth_url
@@ -52,15 +52,15 @@ module SquareUp
     end
 
     def query_params
-        {
-          code_challenge: code_challenge,
-          code_challenge_method: CODE_CHALLENGE_METHOD,
-          state: state,
-          client_id: ENV.fetch("SQUARE_UP_CLIENT_ID", nil),
-          redirect_uri: redirect_uri,
-          response_type: "code",
-          scope: scopes
-        }
+      {
+        code_challenge: code_challenge,
+        code_challenge_method: CODE_CHALLENGE_METHOD,
+        state: state,
+        client_id: ENV.fetch('SQUARE_UP_CLIENT_ID', nil),
+        redirect_uri: redirect_uri,
+        response_type: 'code',
+        scope: scopes
+      }
     end
   end
 end

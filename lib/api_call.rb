@@ -32,7 +32,7 @@ class ApiCall
       request_method.to_sym,
       path,
       request_body,
-      headers,
+      headers
     )
 
     handle_response
@@ -57,7 +57,7 @@ class ApiCall
   def default_headers
     {
       'Content-Type' => 'application/json',
-      'Accept' => 'application/json',
+      'Accept' => 'application/json'
     }
   end
 

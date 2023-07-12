@@ -20,25 +20,25 @@ module SquareUp
     private
 
     def path
-      "v2/orders/search".freeze
+      'v2/orders/search'.freeze
     end
 
     def query
       {
-       filter: {
+        filter: {
           date_time_filter: {
             closed_at: {
               start_at: params[:start_at]&.to_datetime || 10.days.ago,
-              end_at: params[:end_at]&.to_datetime || DateTime.now,
+              end_at: params[:end_at]&.to_datetime || DateTime.now
             }
           },
           state_filter: {
-            states: ["COMPLETED"]
+            states: ['COMPLETED']
           }
         },
         sort: {
-          sort_field: "CLOSED_AT",
-          sort_order: "DESC"
+          sort_field: 'CLOSED_AT',
+          sort_order: 'DESC'
         }
       }
     end
@@ -53,10 +53,9 @@ module SquareUp
     end
 
     def payload
-
       {
         location_ids: location_ids,
-        query: query,
+        query: query
       }
     end
   end

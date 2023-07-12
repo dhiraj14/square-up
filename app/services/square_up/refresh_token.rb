@@ -18,7 +18,7 @@ module SquareUp
     private
 
     def path
-      "oauth2/token".freeze
+      'oauth2/token'.freeze
     end
 
     def redirect_uri
@@ -27,18 +27,17 @@ module SquareUp
 
     def payload
       {
-        client_id: ENV.fetch("SQUARE_UP_CLIENT_ID", nil),
+        client_id: ENV.fetch('SQUARE_UP_CLIENT_ID', nil),
         redirect_uri: redirect_uri,
         refresh_token: refresh_token,
-        grant_type: "refresh_token"
+        grant_type: 'refresh_token'
       }
     end
 
     def headers
       {
-        'Content-Type' => 'application/json',
+        'Content-Type' => 'application/json'
       }
     end
-
   end
 end

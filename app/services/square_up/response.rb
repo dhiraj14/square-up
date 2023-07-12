@@ -16,7 +16,7 @@ module SquareUp
     end
 
     def errors
-      {error: parse["message"] || parse["errors"]}
+      { error: parse['message'] || parse['errors'] }
     end
 
     def original_response
