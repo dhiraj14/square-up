@@ -1,10 +1,9 @@
 module SquareUp
-  class CreateToken < Base
-    attr_reader :params, :code_verifier
+  class RefreshToken < Base
+    attr_reader :refresh_token
 
-    def initialize(params, code_verifier)
-      @params = params
-      @code_verifier = code_verifier
+    def initialize(refresh_token)
+      @refresh_token = refresh_token
     end
 
     def call
@@ -29,10 +28,9 @@ module SquareUp
     def payload
       {
         client_id: ENV.fetch("SQUARE_UP_CLIENT_ID", nil),
-        code_verifier: code_verifier,
         redirect_uri: redirect_uri,
-        code: params[:code],
-        grant_type: "authorization_code"
+        refresh_token: refresh_token,
+        grant_type: "refresh_token"
       }
     end
 
@@ -41,5 +39,6 @@ module SquareUp
         'Content-Type' => 'application/json',
       }
     end
+
   end
 end

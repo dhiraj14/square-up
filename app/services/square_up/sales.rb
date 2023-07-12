@@ -28,8 +28,8 @@ module SquareUp
        filter: {
           date_time_filter: {
             closed_at: {
-              start_at: params[:start_at] || 10.days.ago,
-              end_at: params[:end_at] || DateTime.now,
+              start_at: params[:start_at]&.to_datetime || 10.days.ago,
+              end_at: params[:end_at]&.to_datetime || DateTime.now,
             }
           },
           state_filter: {
@@ -44,7 +44,12 @@ module SquareUp
     end
 
     def location_ids
-      Locations.call(token)
+      locations = Locations.call(token)
+      if locations.include? :error
+        []
+      else
+        locations
+      end
     end
 
     def payload

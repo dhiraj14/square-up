@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def login
+    if cookies["oauth_access_token"].present?
+      redirect_to(sales_path) and return
+    end
+
     url_generator = SquareUp::AuthorizationUrlGenerator.call
     cookies.delete("code_verifier")
     cookies["code_verifier"] = url_generator[:code_verifier]
