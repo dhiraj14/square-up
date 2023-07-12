@@ -6,28 +6,14 @@ module SquareUp
       @token = token
     end
 
-    def call
-      response = Response.new(make_api_call)
-
-      if response.success?
-        response.body['locations'].map { |location| location['id'] }
-      else
-        response.errors
-      end
-    end
-
     private
 
-    def method
-      :get
+    def result
+      locations_api.list_locations
     end
 
-    def path
-      'v2/locations'.freeze
-    end
-
-    def payload
-      {}
+    def locations_api
+      @locations_api ||= client.locations
     end
   end
 end
