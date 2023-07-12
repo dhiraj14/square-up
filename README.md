@@ -1,24 +1,12 @@
-# README
+# Square Up
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To begin with, create a Square Sandbox Account and be ready with `CLIENNT_ID` and `CLIENT_SECRET`
+Set SQUARE_UP_CLIENT_ID and SQUARE_UP_CLIENT_SECRET
 
-Things you may want to cover:
 
-* Ruby version
+Start the app and visit the root page.
+Click on Login With Square
+You will be redirected to square authorization page.
+Once approved, the user is redirected to the sales index.
+`start_at` and `end_at` can be added as filter to the sales requests. 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
